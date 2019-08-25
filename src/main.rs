@@ -12,7 +12,7 @@ fn main() {
   let mut guess = String::new();
 
   // The & indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. 
-  // 指標
+  // 使用指標減少記憶體耗損
   io::stdin().read_line(&mut guess)
       .expect("Failed to read line");
 

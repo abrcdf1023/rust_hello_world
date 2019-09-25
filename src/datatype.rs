@@ -1,16 +1,20 @@
 use std::io;
 
 // In Rust, variables are immutable by default.
-pub fn variables() {
-  // let x = 5;
-  // println!("The value of x is: {}", x);
-  // x = 6;
-  // println!("The value of x is: {}", x);
+// pub fn immutable() {
+//   let x = 5;
+//   println!("The value of x is: {}", x);
+//   x = 6;
+//   ^^^^^ cannot assign twice to immutable variable
+// }
 
+pub fn mutable() {
   let mut x = 5;
   println!("The value of x is: {}", x);
+  // The value of x is: 5
   x = 6;
   println!("The value of x is: {}", x);
+  // The value of x is: 6
 }
 
 // Variable Shadowing
@@ -22,18 +26,28 @@ pub fn variables_shadowing() {
 
   let x = x + 1;
 
+  println!("The value of x is: {}", x);
+  // The value of x is: 6
+
   let x = x * 2;
 
   println!("The value of x is: {}", x);
+  // The value of x is: 12
 }
+
+// pub fn wrong_types() {
+//   let x = 30.5;
+//   let y = 30;
+//   println!("The value of x + y is: {}", x + y);
+//   // ^ no implementation for `{float} + {integer}`
+// }
 
 pub fn data_types() {
   // Rust 是強型別的語言也無需特別宣告
-  let mut y = 30;
-  println!("The value of y is: {}", y);
-  // Error: 這裡會報錯
-  // y = "40";
-  println!("The value of y is: {}", y);
+  let x = 30; 
+  let y: i64 = 30; 
+  let z: i32 = 30; 
+  println!("The value of x + y is: {}", x + z);
 }
 
 pub fn data_types_integer() {
@@ -55,7 +69,7 @@ pub fn data_types_float() {
   let x = 2.5; // f64
   println!("The value of x is: {}", x);
   let y: f32 = 3.3; // f32
-  println!("The value of y is: {}", y);
+  println!("The value of y is: {}", x + y);
 }
 
 pub fn numeric_operations() {
@@ -93,6 +107,13 @@ pub fn data_types_char() {
   println!("z = {}", z);
   let heart_eyed_cat = '😻';
   println!("heart_eyed_cat = {}", heart_eyed_cat);
+
+  let g = String::from("z");
+  println!("g = {}", g);
+  let a = String::from("ℤ");
+  println!("a = {}", a);
+  let p = String::from("😻");
+  println!("p = {}", p);
 }
 
 pub fn compound_types() {
@@ -107,14 +128,41 @@ pub fn compound_types() {
 
   // Array
   // 陣列裡的物件必須都為同樣的類型
-  let months = ["January", "February", "March", "April", "May", "June", "July",
-              "August", "September", "October", "November", "December"];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   let a: [i32; 5] = [1, 2, 3, 4, 5];
-  let a = [3; 5]; // equals let a = [3, 3, 3, 3, 3];
-  // 取得陣列物件
+  let mut a = [3; 5]; // equals let a = [3, 3, 3, 3, 3];
+                  // 取得陣列物件
+  a[0] = 5;
   let j = months[0];
   println!("The value of j is: {}", j);
   // 取物件時 index 不能大於或等於陣列長度否則編譯會錯
   // Error: 這裡會報錯
-  // let element = a[10];
+  // let index = 5;
+  // let third = a[index];
+}
+
+const GLOBAL_VALUE: &str = "發大財";
+static CHANGABLE_GLOBAL_VALUE: f64 = 10.5;
+
+pub fn tuple_with_mixed_data_type() {
+  let mut tup: (&str, f64, u8) = (GLOBAL_VALUE, CHANGABLE_GLOBAL_VALUE, 1);
+  tup.1 = 22.5;
+
+  // 解構
+  println!("The value of tup.0 is: {}", tup.0);
+  println!("The value of tup.1 is: {}", tup.1);
+  println!("The value of tup.2 is: {}", tup.2); 
 }

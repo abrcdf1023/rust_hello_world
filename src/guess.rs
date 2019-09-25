@@ -14,7 +14,7 @@ pub fn guess_number() {
     // The :: syntax in the ::new line indicates that new is an associated function of the String type
     // Associated functions are functions associated with a type.
     // To summarize, the let mut guess = String::new(); line has created a mutable variable that is currently bound to a new, empty instance of a String. Whew!
-    let mut guess = String::new();
+    let mut guess = String::from("test");
 
     // The & indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. 
     // 使用指標減少記憶體耗損

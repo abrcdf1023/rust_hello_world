@@ -18,13 +18,19 @@ fn main() {
   // datatype::numeric_operations();
   // datatype::data_types_boolean();
   // datatype::data_types_char();
-  datatype::compound_types();
+  // datatype::compound_types();
   // datatype::tuple_with_mixed_data_type();
-  // my_functions::fn_with_parameters(5, 5);
+  // my_functions::hello_world();
+  my_functions::fn_with_parameters(5, 5);
+  // my_functions::expression_based();
+  // my_functions::statement_test();
   // ERROR: 這會報錯因為他是 private 的 function
   // my_functions::private_fn(5, 5);
   // println!("5 + 5 = {}", my_functions::add(5, 5));
   // control_flow::mul_condition(6);
+  // control_flow::use_match(6);
+  // control_flow::loop_result();
+  // control_flow::use_if_expression();
   // control_flow::add_to_100();
   // control_flow::reduce_to_0();
   // control_flow::for_in_array();

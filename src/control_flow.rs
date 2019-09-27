@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 pub fn mul_condition(number: i32) {
   if number % 4 == 0 {
     println!("number is divisible by 4");
@@ -10,6 +12,27 @@ pub fn mul_condition(number: i32) {
   }
 }
 
+pub fn use_match(number: i32) {
+  let compare = 3;
+
+  match number.cmp(&compare) {
+    Ordering::Less => println!("Less"),
+    Ordering::Greater => println!("Greater"),
+    Ordering::Equal => println!("Equal"),
+  }
+}
+
+pub fn use_if_expression() {
+  let condition = true;
+  let number = if condition {
+      5
+  } else {
+      6
+  };
+
+  println!("The value of number is: {}", number);
+}
+
 pub fn add_to_100() {
   let mut number = 0;
   loop {
@@ -20,6 +43,20 @@ pub fn add_to_100() {
       break;
     }
   }
+}
+
+pub fn loop_result() {
+  let mut counter = 0;
+
+  let result = loop {
+      counter += 1;
+
+      if counter == 10 {
+          break counter * 2;
+      }
+  };
+
+  println!("The result is {}", result);
 }
 
 pub fn reduce_to_0() {

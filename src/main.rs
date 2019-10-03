@@ -5,6 +5,7 @@ mod my_functions;
 mod control_flow;
 mod ownership;
 mod references;
+mod slice_type;
 
 fn main() {
   // guess::guess_number();
@@ -21,7 +22,7 @@ fn main() {
   // datatype::compound_types();
   // datatype::tuple_with_mixed_data_type();
   // my_functions::hello_world();
-  my_functions::fn_with_parameters(5, 5);
+  // my_functions::fn_with_parameters(5, 5);
   // my_functions::expression_based();
   // my_functions::statement_test();
   // ERROR: 這會報錯因為他是 private 的 function
@@ -34,11 +35,32 @@ fn main() {
   // control_flow::add_to_100();
   // control_flow::reduce_to_0();
   // control_flow::for_in_array();
+  // ownership::move_vs_copy();
   // ownership::double_free_error();
   // ownership::to_fixed_double_free_error();
   // ownership::without_double_free_error();
   // ownership::ownership_and_functions();
   // ownership::ownership_and_return_values();
+  // let s = String::from("hello");
+  // references::unchangeable(&s);
   // let mut s = String::from("hello");
-  // references::change(&mut s);
+  // references::changeable(&mut s);
+  // println!("s = {}", s);
+  // references::cause_error();
+  // references::cause_error_too();
+  // references::this_work();
+  // references::this_work_too();
+  // let reference_to_nothing = references::dangling_references();
+  // let reference_to_nothing = references::no_dangling_references();
+  
+  // let mut text = String::from("hello world");
+  // println!("first word end index = {}", slice_type::first_word(&text));
+
+  // let mut s = String::from("hello world");
+  // 把 s 借給了 word
+  // let word = slice_type::first_word_enhance(&s);
+  // 把 s 清掉
+  // s.clear();
+  // 因為 s 已經被清掉了所以就不可能 reference 的到他因此會報錯。
+  // println!("the first word is: {}", word);
 }

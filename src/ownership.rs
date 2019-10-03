@@ -1,3 +1,12 @@
+pub fn move_vs_copy() {
+  let x = 5;
+  let y = x;
+  println!("{}", x);
+  let s1 = String::from("hello");
+  let s2 = s1;
+  // println!("{}", s1);
+}
+
 // Rust 沒有 garbage collector 的機制取而代之的是當變數 out of scope 就會釋放記憶體位置(drop function)。
 // 但是這樣會導致一些問題
 // 1. 當兩個變數指到同一個記憶體位子時會導致 double free error
@@ -36,34 +45,28 @@ pub fn without_double_free_error() {
 }
 
 pub fn ownership_and_functions() {
-  let s = String::from("hello"); // s comes into scope
+  let s = String::from("hello"); // s 現在在 scope 裡面
 
-  takes_ownership(s); // s's value moves into the function...
-                      // ... and so is no longer valid here
+  takes_ownership(s); // 由於 s 是用 heap 法處理所以 move
+                      // 因此 s 的所有權已經被轉移了
 
-  // Error
-  // println!("s = {}", s);
+  // println!("s = {}", s); // 這時已經取得不了 s 編譯會報錯
+                     // ^ value borrowed here after move
 
-  let x = 5; // x comes into scope
+  let x = 5; // 反之如果是 stack 法處理
 
-  makes_copy(x); // x would move into the function,
-                 // but i32 is Copy, so it’s okay to still
-                 // use x afterward
-                 // Not Error
+  makes_copy(x); // x 就會 copy 一份後進到函數裡面
+                 // 所以還是可以印得出 x 不會報錯
   println!("x = {}", x);
-} // Here, x goes out of scope, then s. But because s's value was moved, nothing
-  // special happens.
+}
 
 fn takes_ownership(some_string: String) {
-  // some_string comes into scope
   println!("{}", some_string);
-} // Here, some_string goes out of scope and `drop` is called. The backing
-  // memory is freed.
+}
 
 fn makes_copy(some_integer: i32) {
-  // some_integer comes into scope
   println!("{}", some_integer);
-} // Here, some_integer goes out of scope. Nothing special happens.
+} 
 
 pub fn ownership_and_return_values() {
   let s1 = gives_ownership(); // gives_ownership moves its return
@@ -76,7 +79,9 @@ pub fn ownership_and_return_values() {
                                      // moves its return value into s3
                                      
   // Error because s2 ownership has moved into takes_and_gives_back.
-  // let s4 = takes_and_gives_back(s2);
+  // println!("{}", s2);
+  // Not Error s3 has the ownership
+  println!("{}", s3);
 } // Here, s3 goes out of scope and is dropped. s2 goes out of scope but was
   // moved, so nothing happens. s1 goes out of scope and is dropped.
 

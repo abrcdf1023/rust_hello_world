@@ -6,6 +6,7 @@ mod control_flow;
 mod ownership;
 mod references;
 mod slice_type;
+mod struct_demo;
 
 fn main() {
   // guess::guess_number();
@@ -63,4 +64,6 @@ fn main() {
   // s.clear();
   // 因為 s 已經被清掉了所以就不可能 reference 的到他因此會報錯。
   // println!("the first word is: {}", word);
+
+  struct_demo::user();
 }
